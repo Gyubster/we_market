@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
+    'user',
+    'post',
 ]
 
 MIDDLEWARE = [
@@ -163,3 +165,12 @@ REST_FRAMEWORK = {
         # 'rest_framework.authentication.BasicAuthentication',
     ),
 }
+
+ ## JWT
+JWT_AUTH = {
+    'JWT_SECRET_KEY': SECRET,
+    'JWT_ALGORITHM': ALGORITHM,
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=28),
+ }
