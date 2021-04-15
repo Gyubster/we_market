@@ -14,13 +14,20 @@ JWT_ENCODE_HANDLER  = api_settings.JWT_ENCODE_HANDLER
 
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
-        model           = Address
-        exclude         = '__all__'
+        model   = Address
+        fields  = '__all__'
 
 class FilterSerializer(serializers.ModelSerializer):
     class Meta:
         model   = Filter 
         fields  = '__all__'
+
+class UserAddressSerialzier(serializers.ModelSerializer):
+    addresses   = AddressSerializer(many=True, read_only=True)
+    
+    class Meta:
+        model       = User
+        fields      =['addresses']
 
 class UserSerializer(serializers.ModelSerializer):
     addresses   = AddressSerializer(many=True, read_only=True)
