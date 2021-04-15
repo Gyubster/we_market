@@ -4,7 +4,15 @@ from rest_framework.permissions     import IsAdminUser,IsAuthenticated, IsAuthen
 
 from user.models    import User, Filter, Address
 
-from .serializers   import UserSerializer
+from .serializers   import AddressSerializer, UserSerializer
+
+class AddressDetailGenericsView(generics.ListCreateAPIView):
+    queryset            = Address.objects.all()
+    serializer_class    = AddressSerializer
+    permission_classes  = [AllowAny]
+
+    def get_queryset(self):
+        return Address.objects.all().filter(user_id=self.request.user.id)
 
 class UserSignInGenericsView(generics.GenericAPIView):
     queryset            = User.objects.all()
