@@ -4,17 +4,7 @@ from rest_framework.permissions     import IsAdminUser,IsAuthenticated, IsAuthen
 
 from user.models    import User, Filter, Address
 
-from .serializers   import UserAddressSerialzier, UserSerializer
-
-class AddressDetailGenericsView(generics.RetrieveAPIView):
-    queryset            = User.objects.all()
-    serializer_class    = UserAddressSerialzier
-    permission_classes  = [AllowAny]
-
-    def retrieve(self, request, *args, **kwargs):
-        instance    = User.objects.get(id=request.user.id)
-        serializer  = self.get_serializer(instance)
-        return Response(serializer.data)
+from .serializers   import UserSerializer
 
 class UserSignInGenericsView(generics.GenericAPIView):
     queryset            = User.objects.all()
