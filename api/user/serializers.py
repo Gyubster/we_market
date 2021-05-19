@@ -16,12 +16,37 @@ class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model   = Address
         fields  = '__all__'
+        extra_kwargs    = {
+                    'addresses' : {'required': False},
+                    'user'      : {'required': False},
+                    'is_main'   : {'required': False}
+                }
+    def create(self, validated_data):
+        return super().create(validated_data)
 
 class FilterSerializer(serializers.ModelSerializer):
     class Meta:
         model   = Filter 
         fields  = '__all__'
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+class UserAddressSerialzier(serializers.ModelSerializer):
+    addresses   = AddressSerializer(many=True)
+    
+    class Meta:
+        model           = User
+        fields          = ['addresses']
+
+    def create(self, validated_data):
+        print(validated_data)
+        print(self)
+        return super().create(validated_data)
+
+>>>>>>> 18f324e... WIP
+=======
+>>>>>>> 4c00fe7... CREATE
 class UserSerializer(serializers.ModelSerializer):
     addresses   = AddressSerializer(many=True, read_only=True)
     filters     = FilterSerializer(many=True, read_only=True)
