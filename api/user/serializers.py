@@ -29,9 +29,6 @@ class FilterSerializer(serializers.ModelSerializer):
         model   = Filter 
         fields  = '__all__'
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 class UserAddressSerialzier(serializers.ModelSerializer):
     addresses   = AddressSerializer(many=True)
     
@@ -40,13 +37,8 @@ class UserAddressSerialzier(serializers.ModelSerializer):
         fields          = ['addresses']
 
     def create(self, validated_data):
-        print(validated_data)
-        print(self)
         return super().create(validated_data)
 
->>>>>>> 18f324e... WIP
-=======
->>>>>>> 4c00fe7... CREATE
 class UserSerializer(serializers.ModelSerializer):
     addresses   = AddressSerializer(many=True, read_only=True)
     filters     = FilterSerializer(many=True, read_only=True)

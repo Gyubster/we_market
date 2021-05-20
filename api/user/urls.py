@@ -1,10 +1,10 @@
 from django.urls    import path
 
-from .views import AddressDetailGenericsView, UserSignInGenericsView
+from .views import UserSignInGenericAPIView, AddressDetailGenericAPIView
 
 app_name= 'users'
 
 urlpatterns = [
-    path('/signin', UserSignInGenericsView.as_view(), name='user-signin'),
-    path('/address', AddressDetailGenericsView.as_view(), name='user-address'),
+    path('/signin', UserSignInGenericAPIView.as_view(), name='user-signin'),
+    path('/address', AddressDetailGenericAPIView.as_view(), name='user-address'),
 ]
