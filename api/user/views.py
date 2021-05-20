@@ -6,25 +6,10 @@ from user.models    import User, Filter, Address
 
 from .serializers   import AddressSerializer, UserSerializer
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-class AddressDetailGenericsView(generics.ListCreateAPIView):
+class AddressDetailGenericAPIView(generics.ListAPIView):
     queryset            = Address.objects.all()
     serializer_class    = AddressSerializer
     permission_classes  = [AllowAny]
-
-    def get_queryset(self):
-        return Address.objects.all().filter(user_id=self.request.user.id)
-=======
-class RetrieveCreateGenericAPIView(mixins.RetrieveModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
-=======
-class AddressDetailGenericsView(generics.ListAPIView):
-    queryset            = Address.objects.all()
-    serializer_class    = AddressSerializer
-    permission_classes  = [AllowAny]
->>>>>>> 4c00fe7... CREATE
 
     def get_queryset(self):
         return Address.objects.filter(user_id=request.user.id)
@@ -67,17 +52,9 @@ class AddressDetailGenericsView(generics.ListAPIView):
                     is_main = True
                 )
 
-<<<<<<< HEAD
-    def get_object(self):
-        #obj = User.objects.get(id=self.request.user.id)
-        obj = User.objects.get(id=1)
-        return obj
->>>>>>> 18f324e... WIP
-=======
         return Response({'message':'success'}, status=status.HTTP_200_OK)
->>>>>>> 4c00fe7... CREATE
 
-class UserSignInGenericsView(generics.GenericAPIView):
+class UserSignInGenericAPIView(generics.GenericAPIView):
     queryset            = User.objects.all()
     serializer_class    = UserSerializer
     permission_classes  = [AllowAny]
