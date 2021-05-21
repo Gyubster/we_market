@@ -12,7 +12,7 @@ class AddressDetailGenericAPIView(generics.ListAPIView):
     permission_classes  = [AllowAny]
 
     def get_queryset(self):
-        return Address.objects.filter(user_id=request.user.id)
+        return Address.objects.filter(user_id=self.request.user.id)
 
     def post(self, request):
         serializer  = AddressSerializer(data=request.data)

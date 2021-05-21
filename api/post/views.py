@@ -4,7 +4,7 @@ from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated, I
 
 from user.models    import Address, Filter, User
 from post.models    import Post
-from .serializers   import PostListSerializer
+from .serializers   import PostDetailSerializer, PostListSerializer
 
 class PostListGenericsAPIView(generics.ListAPIView):
     serializer_class    = PostListSerializer
@@ -19,3 +19,8 @@ class PostListGenericsAPIView(generics.ListAPIView):
         posts   = Post.objects.filter(address=address.name).exclude(subcategory_id__in = excluded_subcategories)
 
         return posts
+
+class PostDetailGenericsAPIView(generics.RetrieveAPIView):
+    queryset            = Post.objects.all()
+    serializer_class    = PostDetailSerializer
+    permission_classes  = [IsAuthenticatedOrReadOnly]
