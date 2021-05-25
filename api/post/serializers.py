@@ -3,15 +3,21 @@ from rest_framework     import serializers
 from user.models    import User
 from post.models    import Post, PostImage
 
-class PostSerializer(serializers.ModelSerializer):
-    class Meta:
-        model  = Post
-        feilds = '__all__'
-
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model  = PostImage
         fields = ['url']
+
+class PostSerializer(serializers.ModelSerializer):
+    images = ImageSerializer(many=True)
+    
+    class Meta:
+        model        = Post
+        fields       = ['title', 'subcategory', 'status', 'title', 'product', 'product', 'introduction', 'price', 'like_count', 'view_count', 'chat_count', 'possible_discount', 'address', 'created_at', 'updated_at', 'images']
+        extra_kwargs = {
+                'address'   : {'required': False},
+                'images'    : {'required': False},
+                }
 
 class PostListSerializer(serializers.ModelSerializer):
     image = ImageSerializer(source='first_image', read_only=True)
@@ -41,5 +47,4 @@ class PostDetailSerializer(serializers.ModelSerializer):
                         'price'         : post.price
                     } for post in Post.objects.filter(user_id=user.id)]
             }
-        return writer
-    
+        return writer   
