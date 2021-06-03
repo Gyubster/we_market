@@ -116,10 +116,10 @@ class PostImage(models.Model):
     class Meta:
         db_table = 'images'
 
-class CrawlImage(models.Model):
+class CrawlProduct(models.Model):
     post = models.ForeignKey(
             'Post',
-            related_name = 'crawl_images',
+            related_name = 'crawl_products',
             on_delete    = models.CASCADE,
             )
     url  = models.URLField(
@@ -127,17 +127,7 @@ class CrawlImage(models.Model):
             max_length      = 2000,
             null            = True,
             )
-
-    class Meta:
-        db_table = 'crawl_images'
-
-class CrawlMall(models.Model):
-    post = models.ForeignKey(
-            'Post',
-            related_name = 'crawl_malls',
-            on_delete    = models.CASCADE,
-            )
-    name = models.URLField(
+    mall = models.URLField(
             verbose_name    = _('name'),
             null            = True,
             )
@@ -148,7 +138,7 @@ class CrawlMall(models.Model):
             )
     
     class Meta:
-        db_table = 'crawl_malls'
+        db_table = 'crawl_products'
 
 class SearchHistroy(models.Model):
     user = models.ForeignKey(
