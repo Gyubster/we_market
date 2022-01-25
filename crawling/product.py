@@ -60,7 +60,7 @@ def Crawling(product):
                     price   = int(product_info_price_list[i].text.replace(',', ''))
                     )
             
-            if is_created:
+            if not is_created:
                 crawl.url     = product_info_image['src'],
                 crawl.mall    = product_info_mall_list[i].text,
                 crawl.price   = int(product_info_price_list[i].text.replace(',', ''))
@@ -77,9 +77,8 @@ def CrawlingProduct():
 
 sched.add_job(CrawlingProduct, 'cron', hour='14', minute='03', id='CrawlingProduct')
 
-print('sched before')
+print('sched start')
 sched.start()
-print('sched after')
 
 while True:
     time.sleep(1)
