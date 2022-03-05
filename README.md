@@ -15,7 +15,7 @@
 ### 1. 적용 기술
 
 - Front-End : React Native, Hooks, State Management(Context, Redux, MobX), Navigatore, Expo
-- Back-End : DRF, Mysql, Scheduler, Mysql
+- Back-End : DRF, Mysql, Scheduler
 - 협업에 사용 된 툴 : Git Hub, Slack, Trello, Figma
 
 ### 2. 구현 기능
